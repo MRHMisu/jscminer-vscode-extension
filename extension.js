@@ -18,8 +18,7 @@ function activate(context) {
 
         // Display a message box to the user
         var k=vscode.workspace.workspaceFolders[0].uri.fsPath;
-        vscode.window.showInformationMessage(k);
-
+    
     });
 
     context.subscriptions.push(disposable);
