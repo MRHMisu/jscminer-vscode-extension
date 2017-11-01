@@ -1,7 +1,8 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 var vscode = require('vscode');
-
+var jscminer=require("./jscminer/main.js");
+var fs = require('fs');
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 function activate(context) {
@@ -17,8 +18,10 @@ function activate(context) {
         // The code you place here will be executed every time your command is executed
 
         // Display a message box to the user
-        var k=vscode.workspace.workspaceFolders[0].uri.fsPath;
-        
+        var inputDirectoryPath=vscode.workspace.workspaceFolders[0].uri.fsPath;
+        var outputDirectoryPath=inputDirectoryPath+"\\clone.txt";
+       jscminer.getDetectedClones(inputDirectoryPath,outputDirectoryPath,0.80);
+        vscode.window.showInformationMessage("Detection Done");
     
     });
 
