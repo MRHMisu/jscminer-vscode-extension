@@ -21,7 +21,7 @@ function activate(context) {
         var inputDirectoryPath=vscode.workspace.workspaceFolders[0].uri.fsPath;
         var outputDirectoryPath=inputDirectoryPath+"\\clone.txt";
        jscminer.getDetectedClones(inputDirectoryPath,outputDirectoryPath,0.80);
-        vscode.window.showInformationMessage("Detection Done");
+        vscode.window.showInformationMessage("Detection Done fff");
     
     });
 
