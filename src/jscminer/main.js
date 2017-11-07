@@ -14,7 +14,8 @@ function getDetectedClones(inputDirectoryPath,outputClonePath,threashold){
     var methodList=getMethodList(inputDirectoryPath);
     var  tokenizedMethodList=getTokenizedMethodList(methodList);
     var clonePairs=getDetectedClonePairs(tokenizedMethodList,threashold);
-    writeClonePairs(clonePairs,outputClonePath,);
+    return clonePairs;
+    //writeClonePairs(clonePairs,outputClonePath,);
 
 }
 
@@ -94,8 +95,8 @@ function writeClonePairs(clonePairs,outputClonePath)
     clonePairs.forEach(function (pair) {
         
             clone += pair.first.methodID + '\n' + pair.second.methodID +'\n'+ pair.type+'\n' +
-                pair.first.fileName + "," + pair.first.startLine + "," + pair.first.endLine + '\n' +
-                pair.second.fileName + "," + pair.second.startLine + "," + pair.second.endLine + '\n' +
+                pair.first.filePath + "," + pair.first.startLine + "," + pair.first.endLine + '\n' +
+                pair.second.filePath + "," + pair.second.startLine + "," + pair.second.endLine + '\n' +
                 pair.first.methodCode + '\n' + pair.second.methodCode
                 + '\n' + "----------------------------------------------------------------------" + '\n';
             

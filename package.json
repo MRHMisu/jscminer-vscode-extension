@@ -1,7 +1,7 @@
 {
-    "name": "jscminer",
-    "displayName": "JSCMiner",
-    "description": "Clone Detector for JavaScript Applicaiton",
+    "name": "jscminer-vscode-extension",
+    "displayName": "jscminer-vscode-extension",
+    "description": "",
     "version": "0.0.1",
     "publisher": "MisuBeImp",
     "engines": {
@@ -13,22 +13,59 @@
     "activationEvents": [
         "onCommand:extension.detectClones"
     ],
-    "main": "./extension",
+    "main": "./out/extension",
     "contributes": {
-        "commands": [{
-            "command": "extension.detectClones",
-            "title": "Detect Clones"
-        }]
-    },"scripts": {
+		"commands": [
+			{
+				"command": "extension.detectClones",
+				"title": "Detect Clones"
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"command": "extension.detectClones",
+					"when": "editorHasReferenceProvider",
+					"group": "navigation"
+				}
+			]
+		},
+		"keybindings": [
+			{
+				"command": "extension.detectClones",
+				"key": "Alt+D"
+			}
+        ],
+		"languages": [
+			{
+				"id": "locations",
+				"aliases": [
+					"Locations"
+				],
+				"extensions": [
+					".locations"
+				]
+			}
+		],
+		"grammars": [
+			{
+				"language": "locations",
+				"path": "./locations-syntax.json",
+				"scopeName": "source.locations"
+			}
+		]
+	},
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
         "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
-        "typescript": "^2.5.2",
+        "typescript": "^2.5.3",
         "vscode": "^1.1.5",
-        "mocha": "^3.5.0",
-        "eslint": "^4.6.1",
-        "@types/node": "^7.0.0",
+        "@types/node": "^7.0.43",
         "@types/mocha": "^2.2.42"
     }
 }
